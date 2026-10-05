@@ -1,0 +1,39 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
+*.tfvars
+!example.tfvars
+
+# Secrets / certs
+.env
+.env.*
+*.pem
+*.key
+*.crt
+secrets.yaml
+secrets.yml
+kubeconfig
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+build/
+*.log
+coverage.out
+
+# Helm
+charts/*.tgz
+*.lock
+
+# Backup / temp
+*.bak
+*.tmp
