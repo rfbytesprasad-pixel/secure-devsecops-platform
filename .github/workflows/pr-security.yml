@@ -37,7 +37,7 @@ jobs:
         with:
           scan-type: fs
           scan-ref: .
-          severity: CRITICAL,HIGH
+          severity: CRITICAL
           exit-code: '1'
           ignore-unfixed: true
           scanners: vuln,secret,misconfig

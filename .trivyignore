@@ -1,0 +1,18 @@
+# Accepted vulnerabilities in the reference app (Google Online Boutique)
+#
+# These are third-party dependencies in code we don't own. The upstream
+# project tracks these. We scan them (for visibility) but do not block
+# deployment on them since they're reference code, not our production app.
+#
+# Review date: 2026-04-06 (90 days)
+# Owner: platform team
+
+# protobufjs arbitrary code execution via injected type fields
+# Affects: app/src/currencyservice, app/src/paymentservice
+# Tracking: upgrade upstream dependency; not on our critical path
+CVE-2026-41242
+
+# anyio TLS certificate spoofing via IDN encoding
+# Affects: app/src/shoppingassistantservice
+# Tracking: upgrade upstream dependency
+CVE-2026-63374
