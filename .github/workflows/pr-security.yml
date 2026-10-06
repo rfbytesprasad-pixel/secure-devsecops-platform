@@ -1,4 +1,5 @@
-\name: PR Security
+
+name: PR Security
 
 on:
   pull_request:
@@ -55,8 +56,7 @@ jobs:
         run: |
           semgrep scan \
             --config=p/default \
-            --error \
             --config=p/ci \
             --config=p/secrets \
+            --error \
             --severity=ERROR
-            
