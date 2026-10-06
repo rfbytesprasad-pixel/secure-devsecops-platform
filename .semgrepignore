@@ -1,0 +1,9 @@
+# Ignore the reference application (Google Online Boutique).
+# We treat this as third-party code — we don't own it, we don't fix
+# its Dockerfiles or code. We still scan OUR platform code (workflows,
+# terraform, policies, etc.).
+#
+# Note: Trivy still scans the whole repo for visibility.
+# Only Semgrep (SAST on source code) is scoped.
+
+app/
