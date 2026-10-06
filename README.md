@@ -33,7 +33,7 @@ Developer → GitHub → GitHub Actions CI (SAST + SCA + IaC scan) → Build + S
 
 - [x] Phase 1 — Sample app on Kubernetes
 - [x] Phase 2 — Platform repo structure
-- [ ] Phase 3 — CI with security gates
+- [x] Phase 3 — CI pipeline with security gates
 - [ ] Phase 4 — GitOps with ArgoCD
 - [ ] Phase 5 — Secrets management
 - [ ] Phase 6 — Policy-as-code
@@ -42,15 +42,30 @@ Developer → GitHub → GitHub Actions CI (SAST + SCA + IaC scan) → Build + S
 - [ ] Phase 9 — Supply chain security
 - [ ] Phase 10 — Threat model + runbooks
 
+## Security gates in CI
+
+Every PR triggers three independent scans:
+
+| Scanner | Purpose | Blocks on |
+|---|---|---|
+| **gitleaks** | Detect committed secrets | Any finding |
+| **Trivy** | Known CVEs + misconfigurations | CRITICAL |
+| **Semgrep** | Static code analysis + secrets | ERROR severity |
+
+Findings scoped to our code are blocking. Third-party code (reference app) is scanned for visibility but excluded from blocking via `.semgrepignore` and `.trivyignore`.
+
+### Evidence
+
+A real PR was blocked on `2026-10-06` — see [`security/incident-log.md`](security/incident-log.md).
+
+![PR blocked](security/evidence/2026-10-06-pr-blocked.png)
+
+![Actions green](security/evidence/2026-10-06-actions-green.png)
+
 ## Quick start
 
-    kind create cluster --name devsecops
-    kubectl create namespace boutique
-    kubectl apply -f app/release/kubernetes-manifests.yaml -n boutique
-    kubectl port-forward -n boutique svc/frontend-external 8080:80
-
-Open http://localhost:8080
-
-## License
-
-MIT
+```bash
+kind create cluster --name devsecops
+kubectl create namespace boutique
+kubectl apply -f app/release/kubernetes-manifests.yaml -n boutique
+kubectl port-forward -n boutique svc/frontend-external 8080:80
