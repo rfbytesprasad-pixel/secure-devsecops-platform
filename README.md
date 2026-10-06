@@ -34,13 +34,24 @@ Developer → GitHub → GitHub Actions CI (SAST + SCA + IaC scan) → Build + S
 - [x] Phase 1 — Sample app on Kubernetes
 - [x] Phase 2 — Platform repo structure
 - [x] Phase 3 — CI pipeline with security gates
-- [ ] Phase 4 — GitOps with ArgoCD
+- [x] Phase 4 — GitOps with ArgoCD
 - [ ] Phase 5 — Secrets management
 - [ ] Phase 6 — Policy-as-code
 - [ ] Phase 7 — Runtime security
 - [ ] Phase 8 — Observability
 - [ ] Phase 9 — Supply chain security
 - [ ] Phase 10 — Threat model + runbooks
+
+## GitOps with ArgoCD
+
+The cluster is reconciled from Git continuously. Every commit to
+`gitops/apps/boutique/manifests/` is deployed automatically.
+
+- **Application:** `gitops/argocd/boutique-app.yaml`
+- **Watched path:** `gitops/apps/boutique/manifests/`
+- **Sync policy:** automated, `selfHeal: true`, `prune: true`
+
+Drift detection is enabled — manual changes to the cluster are reverted.
 
 ## Security gates in CI
 
