@@ -1,7 +1,10 @@
 # Demo Application Config
 
-This file intentionally contains a fake credential to demo the CI security gate.
+Credentials are injected at runtime via environment variables.
+Never commit secrets to source code.
 
-## GitHub token (FAKE — do not use)
+## Required environment variables
 
-GITHUB_TOKEN=ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
+- `GITHUB_TOKEN` — provided by CI/CD secret store
+- `AWS_ACCESS_KEY_ID` — provided by CI/CD secret store
+- `AWS_SECRET_ACCESS_KEY` — provided by CI/CD secret store
