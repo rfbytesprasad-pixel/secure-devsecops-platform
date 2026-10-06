@@ -1,8 +1,7 @@
 # Demo Application Config
 
-This file intentionally contains a fake AWS key to demo the CI security gate.
+This file intentionally contains a fake credential to demo the CI security gate.
 
-## AWS credentials (EXAMPLE — do not use)
+## GitHub token (FAKE — do not use)
 
-AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
-AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+GITHUB_TOKEN=ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
