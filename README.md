@@ -35,12 +35,25 @@ Developer → GitHub → GitHub Actions CI (SAST + SCA + IaC scan) → Build + S
 - [x] Phase 2 — Platform repo structure
 - [x] Phase 3 — CI pipeline with security gates
 - [x] Phase 4 — GitOps with ArgoCD
-- [ ] Phase 5 — Secrets management
+- [x] Phase 5 — Secrets management
 - [ ] Phase 6 — Policy-as-code
 - [ ] Phase 7 — Runtime security
 - [ ] Phase 8 — Observability
 - [ ] Phase 9 — Supply chain security
 - [ ] Phase 10 — Threat model + runbooks
+
+## Secrets Management
+
+Secrets live in **HashiCorp Vault**. Kubernetes Secrets are created at runtime
+by **External Secrets Operator** from `ExternalSecret` declarations.
+
+- **Vault path:** `secret/boutique/*`
+- **Sync mechanism:** ESO watches `ExternalSecret` CRDs
+- **Rotation:** update in Vault → ESO re-syncs → no Git commit needed
+- **In Git:** only the ExternalSecret declaration (which key, from where)
+- **Never in Git:** the actual secret value
+
+![ESO synced](security/evidence/2026-10-07-eso-synced.png)
 
 ## GitOps with ArgoCD
 
