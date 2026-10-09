@@ -36,12 +36,28 @@ Developer → GitHub → GitHub Actions CI (SAST + SCA + IaC scan) → Build + S
 - [x] Phase 3 — CI pipeline with security gates
 - [x] Phase 4 — GitOps with ArgoCD
 - [x] Phase 5 — Secrets management
-- [ ] Phase 6 — Policy-as-code
+- [x] Phase 6 — Policy-as-code
 - [ ] Phase 7 — Runtime security
 - [ ] Phase 8 — Observability
 - [ ] Phase 9 — Supply chain security
 - [ ] Phase 10 — Threat model + runbooks
 
+
+## Policy-as-Code (Kyverno)
+
+Admission control blocks non-compliant workloads at the API server.
+
+| Policy | What it blocks |
+|---|---|
+| `disallow-privileged` | Containers with `securityContext.privileged: true` |
+| `require-resource-limits` | Containers without CPU/memory limits |
+| `disallow-latest-tag` | Images tagged `:latest` |
+| `disallow-hostpath` | `hostPath` volume mounts |
+
+Policies are managed via GitOps (`gitops/policies/`) and enforced in
+**Enforce** mode — violating pods are rejected, not just logged.
+
+![Kyverno blocked](security/evidence/2026-10-09-kyverno-blocked.png)
 ## Secrets Management
 
 Secrets live in **HashiCorp Vault**. Kubernetes Secrets are created at runtime
