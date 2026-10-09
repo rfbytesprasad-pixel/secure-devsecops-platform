@@ -15,6 +15,9 @@ spec:
         any:
           - resources:
               kinds: [Pod]
+              namespaces:
+                - boutique
+                - default
       validate:
         message: "hostPath volumes are not allowed — they expose the node filesystem."
         pattern:

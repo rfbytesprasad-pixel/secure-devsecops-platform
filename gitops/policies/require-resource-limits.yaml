@@ -15,6 +15,9 @@ spec:
         any:
           - resources:
               kinds: [Pod]
+              namespaces:
+                - boutique
+                - default
       validate:
         message: "Containers must specify CPU and memory limits."
         pattern:

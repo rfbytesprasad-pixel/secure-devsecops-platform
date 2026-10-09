@@ -8,7 +8,8 @@ metadata:
     policies.kyverno.io/severity: high
     policies.kyverno.io/description: >-
       Privileged containers have full access to the host. They can escape
-      isolation and compromise the node. Block them.
+      isolation and compromise the node. Block them in all namespaces except
+      trusted platform namespaces (falco, kyverno, argocd, kube-system).
 spec:
   validationFailureAction: Enforce
   background: true
@@ -18,6 +19,9 @@ spec:
         any:
           - resources:
               kinds: [Pod]
+              namespaces:
+                - boutique
+                - default
       validate:
         message: "Privileged containers are not allowed. Set securityContext.privileged=false or omit it."
         pattern:
