@@ -1,0 +1,29 @@
+customRules:
+  boutique-rules.yaml: |-
+    - rule: Shell spawned in boutique namespace
+      desc: Alert on any shell spawned in the boutique namespace
+      condition: >
+        spawned_process and
+        container and
+        k8s.ns.name = "boutique" and
+        proc.name in (sh, bash, zsh, ash, dash)
+      output: >
+        Shell spawned in boutique namespace
+        (user=%user.name pod=%k8s.pod.name ns=%k8s.ns.name
+         container=%container.name image=%container.image.repository
+         cmd=%proc.cmdline parent=%proc.pname)
+      priority: WARNING
+      tags: [shell, container, mitre_execution]
+
+    - rule: Sensitive file read in container
+      desc: Alert on reads of sensitive files inside any container
+      condition: >
+        open_read and
+        container and
+        fd.name in (/etc/shadow, /etc/sudoers, /root/.ssh/id_rsa, /root/.aws/credentials)
+      output: >
+        Sensitive file read
+        (user=%user.name file=%fd.name pod=%k8s.pod.name ns=%k8s.ns.name
+         container=%container.name)
+      priority: WARNING
+      tags: [filesystem, mitre_credential_access]

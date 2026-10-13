@@ -37,11 +37,17 @@ Developer → GitHub → GitHub Actions CI (SAST + SCA + IaC scan) → Build + S
 - [x] Phase 4 — GitOps with ArgoCD
 - [x] Phase 5 — Secrets management
 - [x] Phase 6 — Policy-as-code
-- [ ] Phase 7 — Runtime security
+- [x] Phase 7 — Runtime security
 - [ ] Phase 8 — Observability
 - [ ] Phase 9 — Supply chain security
 - [ ] Phase 10 — Threat model + runbooks
 
+## Runtime Security (Falco)
+
+Falco watches syscalls via eBPF and alerts on suspicious behavior inside
+running containers.
+
+- **Driver:** modern eBPF (CO-R
 
 ## Policy-as-Code (Kyverno)
 

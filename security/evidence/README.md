@@ -9,3 +9,4 @@ Screenshots and logs backing claims made in the incident log and README.
 | 2026-10-06 | `2026-10-06-actions-green.png` | Actions run after fix — all 3 jobs green |
 | 2026-10-06 | `2026-10-06-argocd-synced.png` | ArgoCD managing the boutique app — Synced/Healthy |
 | 2026-10-07 | `2026-10-07-eso-synced.png` | External Secrets Operator syncing from Vault — Synced/Healthy |
+| 2026-10-13 | `2026-10-13-falco-alert.png` | Falco detecting a `sh` shell spawn in a running boutique pod (MITRE T1059) |
