@@ -38,9 +38,24 @@ Developer → GitHub → GitHub Actions CI (SAST + SCA + IaC scan) → Build + S
 - [x] Phase 5 — Secrets management
 - [x] Phase 6 — Policy-as-code
 - [x] Phase 7 — Runtime security
-- [ ] Phase 8 — Observability
+- [x] Phase 8 — Observability
 - [ ] Phase 9 — Supply chain security
 - [ ] Phase 10 — Threat model + runbooks
+## Observability
+
+Metrics, logs, and dashboards for the whole platform.
+
+- **Prometheus** — scrapes metrics from K8s, ArgoCD, Kyverno, Falco, ESO
+- **Grafana** — Security Overview dashboard (CPU, memory, restarts, sync status)
+- **Alertmanager** — routes alerts
+- **Loki** — log aggregation
+
+Alerts defined in `gitops/monitoring/alerts.yaml`:
+- PodCrashLooping
+- ArgoCDOutOfSync
+- ExternalSecretSyncFailed
+
+![Grafana dashboard](security/evidence/2026-10-14-grafana-dashboard.png)
 
 ## Runtime Security (Falco)
 

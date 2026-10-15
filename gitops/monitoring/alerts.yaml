@@ -1,0 +1,35 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: boutique-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: boutique
+      interval: 30s
+      rules:
+        - alert: PodCrashLooping
+          expr: rate(kube_pod_container_status_restarts_total{namespace="boutique"}[10m]) > 0
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Pod {{ $labels.pod }} is crash looping"
+
+        - alert: ArgoCDOutOfSync
+          expr: argocd_app_info{sync_status="OutOfSync"} == 1
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "ArgoCD app {{ $labels.name }} is OutOfSync"
+
+        - alert: ExternalSecretSyncFailed
+          expr: externalsecret_status_condition{condition="Ready",status="False"} == 1
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "ExternalSecret {{ $labels.name }} failed to sync"
