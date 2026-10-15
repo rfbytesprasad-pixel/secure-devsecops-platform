@@ -1,0 +1,30 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-image-signatures
+  annotations:
+    policies.kyverno.io/title: Verify Image Signatures
+    policies.kyverno.io/category: Supply Chain
+    policies.kyverno.io/severity: high
+spec:
+  validationFailureAction: Enforce
+  webhookTimeoutSeconds: 30
+  failurePolicy: Fail
+  rules:
+    - name: verify-signature
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+              namespaces: [boutique]
+      verifyImages:
+        - imageReferences:
+            - "ghcr.io/rfbytesprasad-pixel/*"
+          attestors:
+            - entries:
+                - keys:
+                    publicKeys: |-
+--BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEq8lJSuQrQjhDnUCjHuhzqSA6ctnS
+PmAHeM1BgF+P27NbjcyPpySLBiH2H3p32B56CJWFsJoj9eqzW4SQOM9dMg==
+-----END PUBLIC KEY-----
