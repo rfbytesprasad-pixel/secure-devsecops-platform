@@ -39,8 +39,18 @@ Developer → GitHub → GitHub Actions CI (SAST + SCA + IaC scan) → Build + S
 - [x] Phase 6 — Policy-as-code
 - [x] Phase 7 — Runtime security
 - [x] Phase 8 — Observability
-- [ ] Phase 9 — Supply chain security
+- [x] Phase 9 — Supply chain security
 - [ ] Phase 10 — Threat model + runbooks
+
+## Supply Chain Security
+
+- **Signing:** Cosign signs image digests with a private key; the public key is embedded in a Kyverno policy
+- **SBOMs:** Syft generates SPDX JSON for every image (`sboms/`)
+- **Verification:** Kyverno `verifyImages` policy rejects unsigned images from our registry at admission time
+- **Demo:** `ghcr.io/rfbytesprasad-pixel/demo-app:v1` (signed) is admitted; `:unsigned` (no signature) is rejected
+
+![Cosign rejected](security/evidence/2026-10-15-cosign-rejected.png)
+
 ## Observability
 
 Metrics, logs, and dashboards for the whole platform.

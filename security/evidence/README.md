@@ -11,3 +11,4 @@ Screenshots and logs backing claims made in the incident log and README.
 | 2026-10-07 | `2026-10-07-eso-synced.png` | External Secrets Operator syncing from Vault — Synced/Healthy |
 | 2026-10-13 | `2026-10-13-falco-alert.png` | Falco detecting a `sh` shell spawn in a running boutique pod (MITRE T1059) |
 | 2026-10-15 | `2026-10-15-grafana-dashboard.png` | Grafana Security Overview — K8s + security metrics |
+| 2026-10-15 | `2026-10-15-cosign-rejected.png` | Kyverno verifying Cosign signature — unsigned image rejected |
