@@ -37,3 +37,4 @@ charts/*.tgz
 # Backup / temp
 *.bak
 *.tmp
+.cosign/cosign.key
